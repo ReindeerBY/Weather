@@ -8,15 +8,19 @@
 import Foundation
 
 struct ResponseBody: Decodable {
-    var coord: CoordinatesResponse
-    var weather: [WeatherResponse]
-    var main: MainResponse
-    var name: String
-    var wind: WindResponse
-
-    struct CoordinatesResponse: Decodable {
-        var lon: Double
-        var lat: Double
+    
+    var list: [WeatherItem]
+    
+    struct WeatherItem: Decodable, Identifiable {
+        var id: Double {
+            dt
+        }
+        
+        var dt: Double
+        var dt_txt: String
+        var weather: [WeatherResponse]
+        var main: MainResponse
+        var wind: WindResponse
     }
 
     struct WeatherResponse: Decodable {
